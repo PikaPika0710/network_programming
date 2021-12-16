@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Co Caro</title>
+</head>
+
+<body id="page-top">
+    <div>
+        <h2>Caro game</h2>
+        <canvas class="bg" id="background"></canvas>
+        <br />
+        <input type="reset" value="reset" onclick="reload()" />
+    </div>
+
+    <script type="text/javascript">
+        // Khai báo biến canvas để vẽ
+        var canvas = document.getElementById("background");
+        // Phương thức getContext() trả về định nghĩa để vẽ trên canvas, hoặc null nếu định nghĩa đó không được hỗ trợ
+        var context = canvas.getContext("2d");
+
+        // Kích thước bàn cờ - Board size
+        var canvasSize = 550; // Kích thước tối đa của bàn cờ - max size of board
+        var numberOfSquare = 10; // Số ô - number of square
+        var sectionSize = 50; // Kích thước mỗi ô - size of square
+        canvas.width = canvasSize; // Chiều dài bàn cờ - Width of board
+        canvas.height = canvasSize; // Chiều rộng bàn cờ - Height of board
+
+        function drawBoard(numberOfSquare) {
+            if (numberOfSquare <= 10) {
+                for (x = 0; x <= numberOfSquare; x++) {
+                    for (y = 0; y <= numberOfSquare; y++) {
+                        // Đường ngang - rows
+                        context.moveTo(0, sectionSize * y);
+                        context.lineTo(sectionSize * numberOfSquare, sectionSize * y);
+                        context.stroke();
+
+                        // Đường dọc - columns
+                        context.moveTo(sectionSize * x, 0);
+                        context.lineTo(sectionSize * x, sectionSize * numberOfSquare);
+                        context.stroke();
+                    }
+                }
+            } else {
+                alert("Max number of square is 10- Số ô tối đa là 10");
+            }
+        }
+
+        // Maximum is 10
+        drawBoard(10);
+
+        //reload()
+        function reload() {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
+<style>
+    div {
+        text-align: center;
+        align-items: center;
+    }
+    
+    h2 {
+        text-align: center;
+        color: palevioletred;
+    }
+    
+    canvas {
+        align-items: center;
+    }
+    
+    input {
+        align-items: center;
+        font-size: 30px;
+        color: palevioletred;
+        border: 1px solid palevioletred;
+        border-radius: 4px;
+        padding: 4px;
+    }
+</style>
